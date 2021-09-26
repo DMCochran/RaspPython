@@ -15,7 +15,6 @@ ser.write(cmd.encode())
 
 while True:
     
-    
     buffer = ser.readline()
     print("Buffer")
     print (buffer.decode("utf-8"))
