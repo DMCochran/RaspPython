@@ -9,7 +9,7 @@ f.close()
 dataBuffer=[]
 debug = False
 buffer = ''
-minuteInterval = 10.0
+minuteInterval = 1.0
 
 ser=serial.Serial('/dev/ttyUSB0', 115200)
  
@@ -27,7 +27,7 @@ ser.write(cmd)
 startTime = datetime.datetime.now()
 while True:
     buff=ser.readline().decode()        
-    currTime = datetime.datetime.now().strftime('%d/%m/%y %I:%M %S %p')
+    currTime = datetime.datetime.now().strftime('%m/%d/%y %I:%M %S %p')
     tempStr = re.search("[T]\:\d{1,}[.]\d{1,}", buff)
     if debug:
         print(type(buff))
@@ -64,5 +64,6 @@ while True:
                 f.write(row)
         f.close()
         
-        print("Buffer Written")
+        if debug:
+            print("Buffer Written")
         startTime = datetime.datetime.now()
